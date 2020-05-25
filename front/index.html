@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALKysv3ExMT/1dXV/8bGxv+6urr/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDAwP++vr7/29vb/8zMzP+ysrL/sbGx/6Ojo/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3Nzf/R0dH/2NjY/9PT0//Jycn/rKys/5ubm/+6urr/qamphwAAAAAAAAAAAAAAAAAAAAAAAAAA4uLiIufn5//V1dX/2NjY/9DQ0P/CwsL/2NjY/9jY2P+srKz/tLS0/56entMAAAAAAAAAAAAAAAAAAAAAAAAAANfX1//Q0ND/3Nzc/+Pj4//n5+f/2tra/9bW1v/m5ub/uLi4/8LCwv+4uLjJAAAAAAAAAAAAAAAAAAAAAAAAAACkpKT/aGho/+Li4v/R0dH/j4+P/1NTU/+Wlpb/19fX/0hISP9ERET/srKy/QAAAAAAAAAAAAAAAAAAAAAAAAAAT09P/0NDQ/+Dg4P/2dnZ/+Hh4f/X19f/xcXF/8nJyf/Dw8P/t7e3/4+Pj/8AAAAAAAAAAAAAAAAAAAAAAAAAAICAgP83Nzf/Kysr/4GBgf/V1dX/09PT/9fX1//Nzc3/x8fH/7i4uP9ERET/AAAAAAAAAAAAAAAAAAAAAAAAAAChoaH/nJyc/0JCQv9lZWX/l5eX/6Ghof/U1NT/0tLS/8jIyP+ZmZn/MzMz/wAAAAAAAAAAAAAAAAAAAAAAAAAAx8fH/r+/v/+srKz/ra2t/2ZmZv+Kior/bGxs/5mZmf9oaGj/V1dX/yAgIP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8vLz/xsbG/729vf+Pj4//g4OD/2lpaf+NjY3/l5eX/y8vL/91dXUfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANfX1/q6urr/eHh4/5SUlP96enr/mZmZ/7+/v//k5OQiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD8HwAA+A8AAPAHAADgBwAAwAcAAMAHAADABwAAwAcAAMAHAADABwAA4A8AAPAfAAD//wAA//8AAA==" rel="icon" type="image/x-icon" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-4 col-md-offset-4">
+                    <h1 class="text-center login-title">Register to continue to sequelize.chat</h1>
+                    <div class="account-wall">
+                        <img class="profile-img" src="https://i.kym-cdn.com/photos/images/newsfeed/000/925/494/218.png_large"
+                            alt="kappa">
+                        <form class="form-signin">
+                        <input type="text" id ="username" class="form-control" placeholder="UserName" required autofocus>
+                        <input type="text" id="email" class="form-control" placeholder="Email" required autofocus>
+                        <input type="password" id="password" class="form-control" placeholder="Password" required>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">
+                            Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+        addEventListener('submit', (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:8080/auth/signup/', {username: document.getElementById("username").value, email: document.getElementById("email").value, password: document.getElementById("password").value}, {headers: {'Accept': 'application/json'}})
+        .then(function (response) {
+            console.log(response.data)
+            alert(response.data.msg)
+        })
+        .catch(function (error) {
+            console.log(error.response.data)
+            alert(error.response.data.msg)
+        })})
+        </script>
+    </body>
+</html>
