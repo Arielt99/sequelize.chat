@@ -12,25 +12,7 @@ const generateJwt =(id,name,isAdmin) =>{
         exp: parseInt(Date.now() / 1000 + 60 * 60)// Ce JWT expirera dans 1h  
     }, jwtSecret)
 }
-const checkJwt = (req, res, next) =>{
-    try {
-        if (!req.header('Authorization')){
-            throw 'Il y as pas de header Authorization dans la requete'
-        }
-        const authorizationPart = req.header('Authorization').split(' ')
-        let token = authorizationPart[1]
-        jwt.verify(token, jwtSecret, (error, decodeToken)=>{
-            if(error){
-                throw error
-            }
-            req.token =decodeToken
-            next()
-        })
-    }catch(error){
-        console.log(error)
-        res.status(401).json({msg:'Accès refusé'})
-    }
-}
+
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const usernameRegex =/^([a-zA-Z0-9-_]{4,16})$/
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/
@@ -100,10 +82,12 @@ module.exports = {
             });
             if (created) {
                 const token = generateJwt(created.id, created.username, created.isAdmin)
+                const id = created.id
                 return res.status(201).json({
                 success:true,
                 msg: 'Nouvel utilisateur créé !',
                 username,
+                id,
                 token
                 })
             }
@@ -158,10 +142,12 @@ module.exports = {
             if (user) {
                 if(bcrypt.compareSync(password, user.password)){
                     const token = generateJwt(user.id, user.username, user.isAdmin)
+                    const id = user.id
                     return res.status(201).json({
                     success:true,
                     msg: 'utilisateur connecté !',
                     username,
+                    id,
                     token
                     })
                 }

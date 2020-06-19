@@ -45,8 +45,11 @@
         e.preventDefault()
         axios.post('http://localhost:8080/auth/signup/', {username: document.getElementById("username").value, email: document.getElementById("email").value, password: document.getElementById("password").value}, {headers: {'Accept': 'application/json'}})
         .then(function (response) {
-            console.log(response.data)
-            alert(response.data.msg)
+            localStorage.setItem('token',response.data.token)
+            localStorage.setItem('id',response.data.id)
+                setTimeout(() =>{
+                    window.location.replace("admin.html");
+                },1000)
         })
         .catch(function (error) {
             console.log(error.response.data)

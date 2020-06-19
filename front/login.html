@@ -6,7 +6,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Register</title>
+        <title>Connect</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBABQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALKysv3ExMT/1dXV/8bGxv+6urr/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMDAwP++vr7/29vb/8zMzP+ysrL/sbGx/6Ojo/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM3Nzf/R0dH/2NjY/9PT0//Jycn/rKys/5ubm/+6urr/qamphwAAAAAAAAAAAAAAAAAAAAAAAAAA4uLiIufn5//V1dX/2NjY/9DQ0P/CwsL/2NjY/9jY2P+srKz/tLS0/56entMAAAAAAAAAAAAAAAAAAAAAAAAAANfX1//Q0ND/3Nzc/+Pj4//n5+f/2tra/9bW1v/m5ub/uLi4/8LCwv+4uLjJAAAAAAAAAAAAAAAAAAAAAAAAAACkpKT/aGho/+Li4v/R0dH/j4+P/1NTU/+Wlpb/19fX/0hISP9ERET/srKy/QAAAAAAAAAAAAAAAAAAAAAAAAAAT09P/0NDQ/+Dg4P/2dnZ/+Hh4f/X19f/xcXF/8nJyf/Dw8P/t7e3/4+Pj/8AAAAAAAAAAAAAAAAAAAAAAAAAAICAgP83Nzf/Kysr/4GBgf/V1dX/09PT/9fX1//Nzc3/x8fH/7i4uP9ERET/AAAAAAAAAAAAAAAAAAAAAAAAAAChoaH/nJyc/0JCQv9lZWX/l5eX/6Ghof/U1NT/0tLS/8jIyP+ZmZn/MzMz/wAAAAAAAAAAAAAAAAAAAAAAAAAAx8fH/r+/v/+srKz/ra2t/2ZmZv+Kior/bGxs/5mZmf9oaGj/V1dX/yAgIP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC8vLz/xsbG/729vf+Pj4//g4OD/2lpaf+NjY3/l5eX/y8vL/91dXUfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANfX1/q6urr/eHh4/5SUlP96enr/mZmZ/7+/v//k5OQiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAP//AAD8HwAA+A8AAPAHAADgBwAAwAcAAMAHAADABwAAwAcAAMAHAADABwAA4A8AAPAfAAD//wAA//8AAA==" rel="icon" type="image/x-icon" />
@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-4 col-md-offset-4">
-                    <h1 class="text-center login-title">Register to continue to sequelize.chat</h1>
+                    <h1 class="text-center login-title">Connect to continue to sequelize.chat</h1>
                     <div class="account-wall">
                         <img class="profile-img" src="https://i.kym-cdn.com/photos/images/newsfeed/000/925/494/218.png_large"
                             alt="kappa">
@@ -44,8 +44,11 @@
         e.preventDefault()
         axios.post('http://localhost:8080/auth/signin/', {username: document.getElementById("username").value, password: document.getElementById("password").value}, {headers: {'Accept': 'application/json'}})
         .then(function (response) {
-            console.log(response.data)
-            alert(response.data.msg)
+            localStorage.setItem('token',response.data.token)
+            localStorage.setItem('id',response.data.id)
+                setTimeout(() =>{
+                    window.location.replace("admin.html");
+                },1000)
         })
         .catch(function (error) {
             console.log(error.response.data)

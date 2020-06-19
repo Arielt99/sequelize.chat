@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">My node</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/admin.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="chat">Features</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main class="container">
+   <h1>Mon profil </h1>
+
+    <form>
+        <div class="form-group">
+            <label for="username">Mon nom d'utilisateur</label>
+            <input type="text" class="form-control" id="username" >
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" autocomplete="off">
+        </div>
+        <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+</main>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    if(!localStorage.id)
+        window.location.replace('/')
+
+    let id = localStorage.id,
+        token = localStorage.token,
+        me = document.querySelector('#username')
+
+        axios.get('http://localhost:8080/admin/'+id , {headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+            .then((res) => {
+               console.log(res.data)
+                 me.value = res.data.username
+
+            })
+            .catch((error) => {
+                alert('Erreur : '+ error.response.data.msg)
+            })
+
+    let form = document.querySelector('form'),
+        username = document.querySelector('#username'),
+        password = document.querySelector('#password')
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        axios.post('http://localhost:8080/admin/'+id, {username: username.value, password: password.value}, {headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+            .then((res) => {
+                alert(res.data.msg)
+
+                setTimeout(() => {
+                    window.location.replace('/admin.html')
+                }, 2000)
+            })
+            .catch((error) => {
+                alert('Erreur : '+ error.response.data.msg)
+            })
+    })
+
+</script>
+</body>
+</html>
