@@ -22,11 +22,10 @@
                             alt="kappa">
                         <form class="form-signin">
                         <input type="text" id ="username" class="form-control" placeholder="UserName" required autofocus>
-                        <input type="text" id="email" class="form-control" placeholder="Email" required autofocus>
                         <input type="password" id="password" class="form-control" placeholder="Password" required>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">
-                            Register</button>
-                            <a href="/login.html">You already have an account ? connect</a>
+                            Connect</button>
+                        <a href="/index.html">You don't have an account ? register</a>
                         </form>
                     </div>
                 </div>
@@ -43,7 +42,7 @@
         <script>
         addEventListener('submit', (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/auth/signup/', {username: document.getElementById("username").value, email: document.getElementById("email").value, password: document.getElementById("password").value}, {headers: {'Accept': 'application/json'}})
+        axios.post('http://localhost:8080/auth/signin/', {username: document.getElementById("username").value, password: document.getElementById("password").value}, {headers: {'Accept': 'application/json'}})
         .then(function (response) {
             console.log(response.data)
             alert(response.data.msg)
