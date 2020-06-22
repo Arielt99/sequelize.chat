@@ -20,10 +20,14 @@ app.get('/',(req, res) => {
          msg: 'Bienvenue sur le chat'
      })
 
-    //connexion d'un user
-    socket.broadcast.emit('chat',{
-        from: 'Serveur',
-        msg: 'un utilisateur est connecté'
+         //traiter le message d'un utilisateur
+    socket.broadcast.on('connexion', data =>{
+        const msg = data.msg
+        const sender = data.sender
+        socket.broadcast.emit('chat',{
+            from : `${sender}`,
+            msg
+        })
     })
 
     //traiter le message d'un utilisateur
