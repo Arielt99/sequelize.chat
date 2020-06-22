@@ -55,6 +55,11 @@
     flex-wrap: wrap;
     max-width: 57vw;
 }
+.moi label{
+    font-size: smaller;
+    display: flex;
+    flex-direction: row-reverse !important;
+}
 .message label{
     font-size: smaller;
     display: flex;
