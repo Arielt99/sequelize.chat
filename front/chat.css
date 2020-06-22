@@ -23,6 +23,12 @@
     margin-right: 40px; 
     flex-wrap: wrap;
 }
+.Serveur{
+    align-self: flex-start !important;
+    border-radius: 10px 10px 10px 0px !important;
+    color: white !important;
+    background-color: rgb(42, 25, 197) !important; 
+}
 .moi{
     align-self: flex-end !important;
     border-radius: 10px 10px 0px 10px !important;
