@@ -45,5 +45,5 @@ app.get('/',(req, res) => {
 
     //message de deconnexion d'un user
 
-const port = 8000
+const port = 3043
 http.listen(port,() => console.log(`Serveur lancé sur http://localhost:${port}`))

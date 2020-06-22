@@ -71,7 +71,7 @@
 
     form.addEventListener('submit', (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/admin/'+id, {username: username.value, password: password.value}, {headers: {
+        axios.post('http://localhost:3042/admin/'+id, {username: username.value, password: password.value}, {headers: {
                 'Authorization': `Bearer ${token}`
             }})
             .then((res) => {

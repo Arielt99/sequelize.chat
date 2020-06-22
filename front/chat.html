@@ -48,7 +48,7 @@
                     token = localStorage.token,
                     username = localStorage.username;
 
-        axios.get('http://localhost:8080/admin/'+id , {headers: {
+        axios.get('http://localhost:3042/admin/'+id , {headers: {
                 'Authorization': `Bearer ${token}`
             }})
             .then((res) => {

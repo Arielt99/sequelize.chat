@@ -42,7 +42,7 @@
         <script>
         addEventListener('submit', (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/auth/signin/', {username: document.getElementById("username").value, password: document.getElementById("password").value}, {headers: {'Accept': 'application/json'}})
+        axios.post('http://localhost:3042/auth/signin/', {username: document.getElementById("username").value, password: document.getElementById("password").value}, {headers: {'Accept': 'application/json'}})
         .then(function (response) {
             localStorage.setItem('token',response.data.token)
             localStorage.setItem('id',response.data.id)

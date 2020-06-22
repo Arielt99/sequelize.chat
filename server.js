@@ -14,5 +14,5 @@ app.use(cors())
 app.use('/admin/', adminRouter)
 app.use('/auth/', authRouter)
 
-const port = 8080
+const port = 3042
 app.listen(port,() => console.log(`Serveur lancé sur http://localhost:${port}`))
