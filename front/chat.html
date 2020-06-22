@@ -93,6 +93,12 @@
             let deconnect = document.querySelector('.deconnect')
 
             deconnect.addEventListener('click', (e) => {
+                const data = {
+                    "msg" : `${username} se déconnecte`,
+                    "sender" : 'Serveur'
+                }
+                text.value=""
+                socket.emit('chat', data)
                 localStorage.removeItem('token')
                 localStorage.removeItem('id')
                 localStorage.removeItem('username')
