@@ -2,7 +2,8 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Sign in </title>
+    <title>Profile </title>
+    <link rel="stylesheet" href="deconnect.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
@@ -15,13 +16,14 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/admin.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/admin.html">Profile <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="chat">Features</a>
+                <a class="nav-link" href="/chat.html">Chat</a>
             </li>
         </ul>
     </div>
+    <button class="deconnect" type="button" value="deconnection">deconnect</button>
 </nav>
 <main class="container">
    <h1>Mon profil </h1>
@@ -52,12 +54,15 @@
                 'Authorization': `Bearer ${token}`
             }})
             .then((res) => {
-               console.log(res.data)
                  me.value = res.data.username
 
             })
             .catch((error) => {
                 alert('Erreur : '+ error.response.data.msg)
+                localStorage.removeItem('token')
+                localStorage.removeItem('id')
+                localStorage.removeItem('username')
+                window.location.replace('/')
             })
 
     let form = document.querySelector('form'),
@@ -80,6 +85,16 @@
                 alert('Erreur : '+ error.response.data.msg)
             })
     })
+
+    let deconnect = document.querySelector('.deconnect')
+
+    deconnect.addEventListener('click', (e) => {
+        localStorage.removeItem('token')
+        localStorage.removeItem('id')
+        localStorage.removeItem('username')
+        window.location.replace('/')
+    })
+    
 
 </script>
 </body>

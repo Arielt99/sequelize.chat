@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat </title>
+    <link rel="stylesheet" href="chat.css">
+    <link rel="stylesheet" href="deconnect.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">My node</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin.html">Profile <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/chat.html">Chat</a>
+                </li>
+            </ul>
+        </div>
+        <button class="deconnect" type="button" value="deconnect">deconnect</button>
+    </nav>
+    <main class="container">
+        <div class="message">
+            <div class="messageList">
+                <ul class="chat">
+                </ul>
+            </div>
+            <form class="add">
+                <input class="input" type="text" placeholer="message">
+                <input class="button" type="submit" value="Envoyer">
+            </form>
+        </div>
+    </main>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="../socket.io/socket.io.js"></script>
+        <script>
+            if(!localStorage.id)
+                window.location.replace('/')
+
+                let id = localStorage.id,
+                    token = localStorage.token,
+                    username = localStorage.username;
+
+        axios.get('http://localhost:8080/admin/'+id , {headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+            .then((res) => {
+
+            })
+            .catch((error) => {
+                alert('Erreur : '+ error.response.data.msg)
+                localStorage.removeItem('token')
+                localStorage.removeItem('id')
+                localStorage.removeItem('username')
+                window.location.replace('/')
+            })
+
+
+
+            const message = document.querySelector('.chat')
+            const text = document.querySelector('[type="text"]')
+            const button = document.querySelector('[type="submit"]')
+            const socket = io()
+
+            button.addEventListener('click', evt => {
+            evt.preventDefault()
+            const data = {
+                "msg" : text.value,
+                "sender" : username
+            }
+            text.value=""
+            socket.emit('chat', data)
+            }
+            )
+            //message bienvenu
+            socket.on('chat', data =>{
+                const {from, msg} = data
+                message.insertAdjacentHTML('beforeEnd',`
+                <li class="${from}">
+                    <label>${from}</label>
+                    <h2>${msg}</h2>
+                </li>
+                `)
+            })
+
+            let deconnect = document.querySelector('.deconnect')
+
+            deconnect.addEventListener('click', (e) => {
+                localStorage.removeItem('token')
+                localStorage.removeItem('id')
+                localStorage.removeItem('username')
+                window.location.replace('/')
+            })
+
+
+
+        </script>
+            
+    </body>
+</html>

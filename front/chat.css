@@ -1,0 +1,110 @@
+.message{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: rgb(243, 242, 242);
+    height: 90vh;
+    justify-content: flex-end;
+}
+.message li{
+    border: 1px lightgray solid;
+    border-radius: 10px 10px 10px 0px;
+    padding: 2px 10px 5px 10px;
+    max-width: 60vw;
+    align-self: start;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    color: white;
+    align-content: flex-end;
+    background-color: rgb(66, 66, 66);   
+    margin-right: 40px; 
+    flex-wrap: wrap;
+}
+.moi{
+    align-self: flex-end !important;
+    border-radius: 10px 10px 0px 10px !important;
+    color: rgb(66, 66, 66) !important;
+    background-color: white !important; 
+}
+.message .input{
+    display: flex;
+    width: 100%;
+    padding-left: 30px;
+    font-size: larger;
+    outline: none;
+    border: none;
+    height: 40px;
+}
+.message .button{
+    display: flex;
+    outline: none;
+    border: none;
+    width: 100px;
+    justify-content: center;
+    font-size: large;
+    background-color: rgb(66, 66, 66);
+    color: white;
+}
+.message h2{
+    margin: 0;
+    font-size: larger;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 57vw;
+}
+.message label{
+    font-size: smaller;
+    display: flex;
+    flex-direction: row;
+}
+.add{
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    border-radius:20px;
+    overflow: hidden;
+    border: lightgray 1px solid;
+    margin-bottom: 20px;
+    width: 70vw;
+    align-self: center;
+    margin-top: 10px;
+}
+.message ul{
+    display: flex;
+    align-items: flex-end;
+    list-style: none;
+    flex-direction: column;
+    margin: 0px;
+}
+.messageList{
+    display: flex;
+    height: 90vh;
+    overflow: auto;
+    flex-direction: column-reverse;
+}
+ul{
+    margin:0px;
+}
+li{
+    display: flex;
+    list-style: none;
+    font-size: medium;
+    flex-direction: row;
+    color: darkslategray;
+    margin-bottom: 10px;
+    width: auto;
+    align-self: center;
+}
+li p{
+    width: auto;
+    display: flex;
+}
+.container{
+    margin:0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}

@@ -47,8 +47,9 @@
         .then(function (response) {
             localStorage.setItem('token',response.data.token)
             localStorage.setItem('id',response.data.id)
+            localStorage.setItem('username',response.data.username)
                 setTimeout(() =>{
-                    window.location.replace("admin.html");
+                    window.location.replace("chat.html");
                 },1000)
         })
         .catch(function (error) {

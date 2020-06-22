@@ -14,11 +14,5 @@ app.use(cors())
 app.use('/admin/', adminRouter)
 app.use('/auth/', authRouter)
 
-app.use(express.static('front'))
-
-app.get('/', function(req, res, next) {
-    res.render('index.html')
- });
-
 const port = 8080
 app.listen(port,() => console.log(`Serveur lancé sur http://localhost:${port}`))
